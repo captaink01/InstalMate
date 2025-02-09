@@ -9,7 +9,7 @@ export default function Signup() {
         <label>Password</label>
         <input placeholder="Enter password" type="password" />
         <label>Confirm Password</label>
-        <input placeholder="confirm username" type="password" />
+        <input placeholder="confirm password" type="password" />
         <button>Signup</button>
       </form>
     </div>
