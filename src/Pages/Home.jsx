@@ -1,4 +1,4 @@
-export default function About() {
+export default function Home() {
   return (
     <div>
       {/* <p className="bg-[#E3D8DA] text-black text-lg md:text-xl leading-relaxed p-8 rounded-2xl shadow-[0_4px_10px_rgba(0,0,0,0.15)] border border-gray-400 max-w-2xl mx-auto">
