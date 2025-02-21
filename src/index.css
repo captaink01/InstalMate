@@ -112,6 +112,8 @@ input {
   margin-bottom: 20px;
   font-size: 16px;
   transition: all 0.3s ease;
+  display: inline-block; /* Ensure inputs stay in a single line */
+  white-space: nowrap;
 }
 
 input:focus {
