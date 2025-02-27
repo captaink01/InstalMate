@@ -1,6 +1,7 @@
 
 
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 export default function ViewTask() {
@@ -11,6 +12,7 @@ export default function ViewTask() {
   const [editedDescription, setEditedDescription] = useState(""); // State for edited description
   const [editedDueDate, setEditedDueDate] = useState(""); // State for edited due date
   const [editedReminder, setEditedReminder] = useState(false); // State for edited reminder
+  const navigate = useNavigate();
   
 
   // Fetch tasks from localStorage when the component mounts
@@ -72,7 +74,10 @@ export default function ViewTask() {
   );
 
   return (
-    <div className="p-4">
+    <div className="p-4 mt-16">
+      <button className="btn" onClick={() => navigate(-1)}>
+   Go Back
+</button>
       <h1 className="text-2xl font-bold mb-4">Task List</h1>
 
       {/* Search Bar */}

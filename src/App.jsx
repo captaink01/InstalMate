@@ -2,18 +2,26 @@ import NavBar from "./Components/NavBar";
 import AppRoutes from "./Pages/AppRoutes";
 import { AuthProvider } from "./Components/AuthContext";
 
-import "./App.css";
-
-
 function App() {
-  
   return (
     <div>
-      <AuthProvider>
-      <NavBar />
-      <AppRoutes />
-      </AuthProvider>
-    
+      {/* Background Div */}
+      <div
+        className="min-h-screen bg-fixed bg-cover bg-center fixed top-0 left-0 w-full h-full -z-10 "
+        style={{
+          backgroundImage: `url('/images/page-turner.svg')`, // Path to your image in the public folder
+        }}
+        
+      ></div>
+      
+
+      {/* Content */}
+      <div className="relative z-10">
+        <AuthProvider>
+          <NavBar />
+          <AppRoutes />
+        </AuthProvider>
+      </div>
     </div>
   );
 }
