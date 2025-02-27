@@ -1,53 +1,44 @@
-
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 export default function ViewTask() {
-  const [tasks, setTasks] = useState([]); // State to store tasks
-  const [searchQuery, setSearchQuery] = useState(""); // State for search query
-  const [editingIndex, setEditingIndex] = useState(null); // State to track which task is being edited
-  const [editedTitle, setEditedTitle] = useState(""); // State for edited title
-  const [editedDescription, setEditedDescription] = useState(""); // State for edited description
-  const [editedDueDate, setEditedDueDate] = useState(""); // State for edited due date
-  const [editedReminder, setEditedReminder] = useState(false); // State for edited reminder
+  const [tasks, setTasks] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [editingIndex, setEditingIndex] = useState(null);
+  const [editedTitle, setEditedTitle] = useState("");
+  const [editedDescription, setEditedDescription] = useState("");
+  const [editedDueDate, setEditedDueDate] = useState("");
+  const [editedReminder, setEditedReminder] = useState(false);
   const navigate = useNavigate();
-  
 
-  // Fetch tasks from localStorage when the component mounts
   useEffect(() => {
     const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
     setTasks(storedTasks);
   }, []);
 
-  // Function to handle task deletion
   const handleDelete = (index) => {
-    const updatedTasks = tasks.filter((_, i) => i !== index); // Remove the task at the specified index
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks)); // Update localStorage
-    setTasks(updatedTasks); // Update state
+    const updatedTasks = tasks.filter((_, i) => i !== index);
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    setTasks(updatedTasks);
     alert("Task deleted successfully!");
   };
 
-  // Function to handle task completion toggle
   const handleToggleComplete = (index) => {
     const updatedTasks = tasks.map((task, i) =>
       i === index ? { ...task, completed: !task.completed } : task
     );
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks)); // Update localStorage
-    setTasks(updatedTasks); // Update state
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    setTasks(updatedTasks);
   };
 
-  // Function to handle editing a task
   const handleEdit = (index) => {
-    setEditingIndex(index); // Set the task being edited
-    setEditedTitle(tasks[index].title); // Populate the edited title
-    setEditedDescription(tasks[index].description); // Populate the edited description
-    setEditedDueDate(tasks[index].dueDate); // Populate the edited due date
-    setEditedReminder(tasks[index].reminder); // Populate the edited reminder
+    setEditingIndex(index);
+    setEditedTitle(tasks[index].title);
+    setEditedDescription(tasks[index].description);
+    setEditedDueDate(tasks[index].dueDate);
+    setEditedReminder(tasks[index].reminder);
   };
 
-  // Function to save the edited task
   const handleSaveEdit = () => {
     const updatedTasks = tasks.map((task, i) =>
       i === editingIndex
@@ -60,13 +51,12 @@ export default function ViewTask() {
           }
         : task
     );
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks)); // Update localStorage
-    setTasks(updatedTasks); // Update state
-    setEditingIndex(null); // Exit edit mode
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    setTasks(updatedTasks);
+    setEditingIndex(null);
     alert("Task updated successfully!");
   };
 
-  // Function to filter tasks based on the search query
   const filteredTasks = tasks.filter(
     (task) =>
       task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -76,11 +66,10 @@ export default function ViewTask() {
   return (
     <div className="p-4 mt-16">
       <button className="btn" onClick={() => navigate(-1)}>
-   Go Back
-</button>
+        Go Back
+      </button>
       <h1 className="text-2xl font-bold mb-4">Task List</h1>
 
-      {/* Search Bar */}
       <div className="mb-4">
         <input
           type="text"
@@ -103,7 +92,6 @@ export default function ViewTask() {
               }`}
             >
               <div className="flex items-center space-x-4">
-                {/* Completion Checkbox */}
                 <input
                   type="checkbox"
                   checked={task.completed || false}
@@ -111,10 +99,8 @@ export default function ViewTask() {
                   className="w-5 h-5 rounded border-gray-300 text-green-500 focus:ring-green-500"
                 />
 
-                {/* Task Details */}
                 <div>
                   {editingIndex === index ? (
-                    // Edit Mode
                     <div className="space-y-2">
                       <input
                         type="text"
@@ -153,23 +139,28 @@ export default function ViewTask() {
                       </button>
                     </div>
                   ) : (
-                    // View Mode
                     <div>
                       <h3
                         className={`text-lg font-semibold ${
-                          task.completed ? "line-through text-gray-500" : "text-gray-800"
+                          task.completed
+                            ? "line-through text-gray-500"
+                            : "text-gray-800"
                         }`}
                       >
                         {task.title}
                       </h3>
                       <p
                         className={`text-sm ${
-                          task.completed ? "line-through text-gray-400" : "text-gray-600"
+                          task.completed
+                            ? "line-through text-gray-400"
+                            : "text-gray-600"
                         }`}
                       >
                         {task.description}
                       </p>
-                      <p className="text-sm text-gray-500">Due: {task.dueDate}</p>
+                      <p className="text-sm text-gray-500">
+                        Due: {task.dueDate}
+                      </p>
                       {task.reminder && (
                         <p className="text-sm text-blue-500">Reminder Set</p>
                       )}
@@ -178,7 +169,6 @@ export default function ViewTask() {
                 </div>
               </div>
 
-              {/* Actions (Edit and Delete Buttons) */}
               <div className="flex space-x-2">
                 {editingIndex !== index && (
                   <button

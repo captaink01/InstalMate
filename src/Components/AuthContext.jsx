@@ -1,11 +1,10 @@
-import  { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  // Check localStorage for user data on initial load
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -15,36 +14,33 @@ export const AuthProvider = ({ children }) => {
 
   const login = (userName, password) => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
-    const user = users.find((u) => u.userName === userName && u.password === password);
+    const user = users.find(
+      (u) => u.userName === userName && u.password === password
+    );
     if (user) {
       setUser(user);
-      localStorage.setItem("user", JSON.stringify(user)); // Store logged-in user in localStorage
-      return true; // Login successful
+      localStorage.setItem("user", JSON.stringify(user));
+      return true;
     }
-    return false; // Login failed
+    return false;
   };
 
   const signup = (userName, password) => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const userExists = users.some((u) => u.userName === userName);
     if (userExists) {
-      return false; // User already exists
+      return false;
     }
     const newUser = { userName, password };
     users.push(newUser);
-    localStorage.setItem("users", JSON.stringify(users)); // Store new user in localStorage
+    localStorage.setItem("users", JSON.stringify(users));
     setUser(newUser);
-    localStorage.setItem("user", JSON.stringify(newUser)); // Store logged-in user in localStorage
-    return true; // Signup successful
+    localStorage.setItem("user", JSON.stringify(newUser));
+    return true;
   };
 
-//   const logout = () => {
-//     setUser(null);
-//     localStorage.removeItem("user"); // Clear logged-in user from localStorage
-//   };
-
   return (
-    <AuthContext.Provider value={{ user, login, signup, }}>
+    <AuthContext.Provider value={{ user, login, signup }}>
       {children}
     </AuthContext.Provider>
   );

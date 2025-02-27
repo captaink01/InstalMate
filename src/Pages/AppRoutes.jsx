@@ -14,9 +14,8 @@ export default function AppRoutes() {
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/TodoApp" element={<TodoApp />} />
-         <Route path="/AddTask" element={<AddTask />} />
-         <Route path="/ViewTasks" element={<ViewTasks />} />
-
+        <Route path="/AddTask" element={<AddTask />} />
+        <Route path="/ViewTasks" element={<ViewTasks />} />
       </Routes>
     </div>
   );

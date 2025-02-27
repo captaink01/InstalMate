@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 
-
 export default function NavBar() {
   return (
     <nav className="bg-sky- bg-opacity-50 p-4 fixed top-0 left-0 right-0 z-50">

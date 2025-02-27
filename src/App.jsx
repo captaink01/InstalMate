@@ -5,17 +5,13 @@ import { AuthProvider } from "./Components/AuthContext";
 function App() {
   return (
     <div>
-      {/* Background Div */}
       <div
         className="min-h-screen bg-fixed bg-cover bg-center fixed top-0 left-0 w-full h-full -z-10 "
         style={{
-          backgroundImage: `url('/images/page-turner.svg')`, // Path to your image in the public folder
+          backgroundImage: `url('/images/page-turner.svg')`,
         }}
-        
       ></div>
-      
 
-      {/* Content */}
       <div className="relative z-10">
         <AuthProvider>
           <NavBar />
