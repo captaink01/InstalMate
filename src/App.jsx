@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <h1 className="text-6xl md:text-8xl font-extrabold text-center text-black tracking-wide leading-tight drop-shadow-2xl italic font-[cursive]">
-        InstalMate2
+        InstalMate2    
       </h1>
       <NavBar />
       <AppRoutes />
