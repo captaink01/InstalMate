@@ -12,7 +12,7 @@ function Login() {
     e.preventDefault();
     const isLoggedIn = login(userName, password);
     if (isLoggedIn) {
-      navigate("/TodoApp");
+      navigate("/AppSelector"); // Redirect to AppSelector after successful login
     } else {
       alert("Invalid credentials");
     }

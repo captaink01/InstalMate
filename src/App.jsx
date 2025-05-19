@@ -2,6 +2,7 @@ import NavBar from "./Components/NavBar";
 import AppRoutes from "./Pages/AppRoutes";
 import { AuthProvider } from "./Components/AuthContext";
 
+
 function App() {
   return (
     <div>
